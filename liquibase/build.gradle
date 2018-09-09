@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+    dependencies {
+        classpath "mysql:mysql-connector-java:8.0.12"
+        classpath "org.yaml:snakeyaml:1.19"
+    }
+}
+
+plugins {
+    id 'net.researchgate.release' version '2.3.4'
+    id 'org.liquibase.gradle' version '1.2.1'
+}
+
+apply plugin: 'java'
+def masterChangeLog = "db.changelog-master.yaml"
+
+liquibase {
+    activities {
+    	test {
+            changeLogFile masterChangeLog
+            url "jdbc:mysql://127.0.0.1:3306/dev_test"
+            username "root"
+            password "root"
+        }
+        dev {
+            changeLogFile masterChangeLog
+            url "jdbc:mysql://127.0.0.1:3306/dev"
+            username "root"
+            password "root"
+        }
+    }
+    
+    System.out.println(System.env.MYSQL_BETA_USER)
+
+    runList = project.ext.has('env') ? project.ext.env : 'dev'
+}
+
+dependencies {
+    compile "org.yaml:snakeyaml:1.19"
+    compile "com.google.guava:guava:23.6-jre"
+}
