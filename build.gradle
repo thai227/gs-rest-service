@@ -26,9 +26,9 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-devtools")
+    compile("org.springframework.boot:spring-boot-starter-web:2.0.5.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:2.0.5.RELEASE")
+    compile("org.springframework.boot:spring-boot-devtools:2.0.5.RELEASE")
     compile "com.netflix.ribbon:ribbon:2.2.2"
     compile "com.zaxxer:HikariCP:3.2.0"
     compile "mysql:mysql-connector-java:8.0.11"

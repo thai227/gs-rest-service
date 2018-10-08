@@ -1,6 +1,5 @@
 package com.thai.infra.jpa.customConfig;
 
-import com.hoiio.x.contract.serializer.JsonSerializer;
 import org.hibernate.type.descriptor.WrapperOptions;
 import org.hibernate.type.descriptor.java.AbstractTypeDescriptor;
 import org.hibernate.type.descriptor.java.MutableMutabilityPlan;

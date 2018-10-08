@@ -1,4 +1,7 @@
 package com.thai.domain.user;
 
-public class UserConfig {
+import java.io.Serializable;
+
+public class UserConfig implements Serializable {
+    public String address;
 }
