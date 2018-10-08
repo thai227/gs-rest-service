@@ -1,0 +1,7 @@
+db:
+  main:
+    host: jdbc:mysql://127.0.0.1:3306
+    username: root
+    password: root
+    name: dev
+    pool: 5
