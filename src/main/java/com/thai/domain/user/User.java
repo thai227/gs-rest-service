@@ -42,4 +42,14 @@ public class User implements Serializable {
     public ZonedDateTime createdTime;
 
 
+    public User(String orgUuid, String name, UserConfig userConfig, EntityStatus status) {
+        this.orgUuid = orgUuid;
+        this.name = name;
+        this.userConfig = userConfig;
+        this.status = status;
+    }
+
+    public User() {
+
+    }
 }

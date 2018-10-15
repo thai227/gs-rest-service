@@ -4,4 +4,6 @@ import java.io.Serializable;
 
 public class UserConfig implements Serializable {
     public String address;
+
+
 }
