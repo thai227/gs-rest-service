@@ -6,6 +6,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.concurrent.Future;
 
 @Service
@@ -13,12 +14,12 @@ public class AsyncService {
     static Logger logger = LoggerFactory.getLogger(AsyncService.class);
 
     @Async
-    public Future<String> testFutureReturn() {
+    public Future<String> testFutureReturn(long invokeTime) {
         try {
             long startTime = System.currentTimeMillis();
             logger.debug(String.format("Return function - Start async %s, thread name : %s ", startTime, Thread.currentThread().getName()));
             Thread.sleep(3000);
-            logger.debug(String.format("Return function - End async. Total time: %s, thread name: %s", System.currentTimeMillis() - startTime, Thread.currentThread().getName()));
+            logger.debug(String.format("Return function - End async. Total time from invoke: %s, thread name: %s", System.currentTimeMillis() - invokeTime, Thread.currentThread().getName()));
         } catch (Exception e) {
             logger.error("Error on aysnc", e);
         }
@@ -27,12 +28,13 @@ public class AsyncService {
 
 
     @Async
-    public void testNoReturn() {
+    @Transactional
+    public void testNoReturn(long invokeTime) {
         try {
             long startTime = System.currentTimeMillis();
-            logger.debug("No return function -- Start async " + startTime + " " + Thread.currentThread().getName());
+            logger.debug(String.format("No return function -- Start async: %s, thread name: %s ", startTime, Thread.currentThread().getName()));
             Thread.sleep(5000);
-            logger.debug("No return function -- End async and return " + (System.currentTimeMillis() - startTime));
+            logger.debug(String.format("No return function -- End async. Total time from invoke time: %s, thread name: %s ", System.currentTimeMillis() - invokeTime, Thread.currentThread().getName()));
         } catch (Exception e) {
             logger.error("Error on aysnc", e);
         }

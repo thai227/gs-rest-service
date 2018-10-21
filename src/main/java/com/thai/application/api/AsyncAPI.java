@@ -13,8 +13,8 @@ import java.util.concurrent.Future;
 
 @RestController
 @RequestMapping("/async")
-public class AsyncTest {
-    static Logger logger = LoggerFactory.getLogger(AsyncTest.class);
+public class AsyncAPI {
+    static Logger logger = LoggerFactory.getLogger(AsyncAPI.class);
     @Autowired
     AsyncService asyncService;
 
@@ -22,7 +22,8 @@ public class AsyncTest {
     public String test() throws ExecutionException, InterruptedException {
         long startTime = System.currentTimeMillis();
         logger.debug("I'm calling a long time process");
-        Future<String> stringFuture = asyncService.testFutureReturn();
+        long invokeTime = System.currentTimeMillis();
+        Future<String> stringFuture = asyncService.testFutureReturn(invokeTime);
         logger.debug("I'm waiting for result - In that time, I do something ");
         Thread.sleep(2000);
         String s = stringFuture.get();
@@ -33,14 +34,18 @@ public class AsyncTest {
 
     @GetMapping("/threadpool")
     public String testThreadPool() throws ExecutionException, InterruptedException {
+        int i1 = Runtime.getRuntime().availableProcessors();
+        logger.debug("Number of processors " + i1);
         long startTime = System.currentTimeMillis();
         logger.debug("I'm calling a long time process");
         for (int i = 0; i < 10; i++) {
-            asyncService.testFutureReturn();
+            long invokeTime = System.currentTimeMillis();
+            //asyncService.testFutureReturn(invokeTime);
         }
 
         for (int i = 0; i < 10; i++) {
-            asyncService.testNoReturn();
+            long invokeTime = System.currentTimeMillis();
+            asyncService.testNoReturn(invokeTime);
         }
 
         logger.debug("I'm waiting for result - In that time, I do something ");
