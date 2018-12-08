@@ -18,7 +18,11 @@ public class RetryAPI {
     public String test() {
         logger.debug("On retry api");
         try {
-            retryService.testRetry();
+            String s = retryService.testRetry();
+            logger.debug("Function return: " + s);
+            String ss = retryService.withRetryTemplate("abc");
+            logger.debug("Function return: " + ss);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
