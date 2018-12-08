@@ -44,11 +44,11 @@ public class RetryService {
     }
 
 
-
     public String withRetryTemplate(String s) {
         String execute = retryTemplate.execute(arg0 -> {
             logger.debug("On retry template " + System.currentTimeMillis());
             logger.debug("retry count " + arg0.getRetryCount());
+            logger.debug("function parameters " + s);
             int k = 1 / 0;
             return "xyz";
         }, arg1 -> {

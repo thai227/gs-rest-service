@@ -20,7 +20,7 @@ public class RetryAPI {
         try {
             String s = retryService.testRetry();
             logger.debug("Function return: " + s);
-            String ss = retryService.withRetryTemplate("abc");
+            String ss = retryService.withRetryTemplate("parameters");
             logger.debug("Function return: " + ss);
 
         } catch (Exception e) {
