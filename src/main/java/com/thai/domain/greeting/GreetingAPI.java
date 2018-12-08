@@ -1,4 +1,4 @@
-package com.thai.application.api;
+package com.thai.domain.greeting;
 
 import com.thai.domain.greeting.Greeting;
 import org.springframework.web.bind.annotation.GetMapping;

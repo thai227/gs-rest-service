@@ -28,12 +28,12 @@ public class AsyncService {
 
 
     @Async
-    @Transactional
-    public void testNoReturn(long invokeTime) {
+    //@Transactional
+    public  void testNoReturn(long invokeTime) {
         try {
             long startTime = System.currentTimeMillis();
             logger.debug(String.format("No return function -- Start async: %s, thread name: %s ", startTime, Thread.currentThread().getName()));
-            Thread.sleep(5000);
+            Thread.sleep(2000);
             logger.debug(String.format("No return function -- End async. Total time from invoke time: %s, thread name: %s ", System.currentTimeMillis() - invokeTime, Thread.currentThread().getName()));
         } catch (Exception e) {
             logger.error("Error on aysnc", e);

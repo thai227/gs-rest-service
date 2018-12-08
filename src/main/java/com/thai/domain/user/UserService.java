@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,6 @@ public class UserService {
     UserRepo userRepo;
 
     public List<User> listAll() {
-        logger.debug("Just test message =====================> ");
         return userRepo.findAll();
     }
 
@@ -33,6 +33,22 @@ public class UserService {
         userRepo.saveAll(userList);
         long end = System.currentTimeMillis();
         logger.debug("Duration ==============> ", end - start);
+
+    }
+
+    public void save(List<User> collect) {
+        this.userRepo.saveAll(collect);
+    }
+
+    @Async
+    @Transactional
+    public List<User> listByOrgUuid(String s) {
+        long start = System.currentTimeMillis();
+        System.out.println("Start request " + Thread.currentThread().getName());
+        List<User> byOrgUuid = this.userRepo.findByOrgUuid(s);
+        long endTime = System.currentTimeMillis();
+        System.out.println("Ended request " + Thread.currentThread().getName() + "  " + (endTime - start));
+        return byOrgUuid;
 
     }
 }

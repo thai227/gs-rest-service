@@ -1,6 +1,5 @@
-package com.thai.application.api;
+package com.thai.domain.async;
 
-import com.thai.domain.async.AsyncService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class AsyncAPI {
     }
 
     @GetMapping("/threadpool")
-    public String testThreadPool() throws ExecutionException, InterruptedException {
+    public String testThreadPool() {
         int i1 = Runtime.getRuntime().availableProcessors();
         logger.debug("Number of processors " + i1);
         long startTime = System.currentTimeMillis();
