@@ -3,11 +3,13 @@ package com.thai.infra;
 import com.thai.domain.retry.RetryListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.retry.backoff.FixedBackOffPolicy;
 import org.springframework.retry.policy.SimpleRetryPolicy;
 import org.springframework.retry.support.RetryTemplate;
 
 @Configuration
+@EnableRetry
 public class SpringRetryTemplate {
     @Bean
     public RetryTemplate retryTemplate() {

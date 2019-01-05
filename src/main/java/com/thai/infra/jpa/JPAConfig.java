@@ -11,6 +11,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
@@ -31,7 +32,7 @@ public class JPAConfig {
     int dbPoolMaxSize;
 
     @Bean
-    public HikariDataSource dataSource() {
+    public DataSource dataSource() {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setJdbcUrl(
                 dbHost + "/" + dbName + "?" +
@@ -53,7 +54,7 @@ public class JPAConfig {
 
     @Bean
     public HikariDataSourcePoolMetadata dataSourceMetaData() {
-        return new HikariDataSourcePoolMetadata(dataSource());
+        return new HikariDataSourcePoolMetadata((HikariDataSource) dataSource());
     }
 
     @Bean
