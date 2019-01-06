@@ -36,11 +36,8 @@ public class TxnAPI {
         }*/
 
         logger.debug("SubTransaction");
-
-        try {
-            txnService.subTransaction(id);
-        } catch (Exception e) {
-        }
+        txnService.subTransactionRequire(id + 3);
+        txnService.subTransactionRequireNew(id);
         return "ok";
     }
 

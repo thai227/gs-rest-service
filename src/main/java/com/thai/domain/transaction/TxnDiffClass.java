@@ -12,9 +12,15 @@ public class TxnDiffClass {
     UserRepo userRepo;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void testSubTransaction(int id) {
-        userRepo.deleteById(id + 1);
+    public void testSubTransactionRequireNew(int id) {
+        userRepo.deleteById(id);
         int i = 1 / 0;
     }
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void testSubTransactionRequire(int id) {
+        userRepo.deleteById(id);
+        int i = 1 / 0;
+    }
+
 
 }
