@@ -1,5 +1,6 @@
 package com.thai.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.thai.infra.jpa.customConfig.JsonStringType;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
@@ -16,6 +17,7 @@ import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "user")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements Serializable {
 
     @Id
@@ -51,5 +53,10 @@ public class User implements Serializable {
 
     public User() {
 
+    }
+
+    public User(String name, String orgUuid) {
+        this.name = name;
+        this.orgUuid = orgUuid;
     }
 }
