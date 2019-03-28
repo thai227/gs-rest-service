@@ -1,7 +1,6 @@
 Insert file
 
-Adding some lines for history
+test push reset
 
-Hi.
-
+Insert a line after reset
 
