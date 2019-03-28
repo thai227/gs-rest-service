@@ -1,6 +1,3 @@
-Insert file
-
-test push reset
 
 Insert a line after reset
 Adding some lines for history
