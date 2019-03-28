@@ -5,7 +5,3 @@ test push reset
 Insert a line after reset
 Adding some lines for history
 
-Hi.
-
-test push reset
-
